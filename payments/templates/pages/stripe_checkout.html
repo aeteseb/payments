@@ -12,41 +12,32 @@
 
 {%- block page_content -%}
 
-<div class="stripe" style="min-height: 400px; padding-bottom: 50px; margin-top:100px;margin-left:250px;">
-	<div class="col-sm-10 col-sm-offset-2">
+<div class="d-flex row justify-content-center">
+<div class="stripe" style="min-height: 400px; padding-bottom: 50px; margin-top:auto ;">
+	<div class="p-5 my-5" style="background-color: #484848; border-radius: 16px;">
 		{% if image %}
 			<img src={{image}}>
 		{% endif %}
-		<h2 class="text-center">{{ _("Payment")}}</h2>
-		<form id="payment-form">
-			<div class="form-row row">
-				<div class="group col-12">
-					<div>
-						<label>
-							<span>{{ _("Name") }}</span>
-						<input id="cardholder-name" name="cardholder-name" class="field" placeholder="{{ _('John Doe') }}" value="{{payer_name}}"/>
-					</label>
-					</div>
+		<h3 class="text-center">{{ _("Enter your Payment Details")}}</h3>
+		<form id="payment-form" class="d-flex flex-column align-items-center">
+			<div style="background-color: #554500; border-radius: 16px; aspect-ratio:1.586; max-width:400px; color:#ffe176;">
+				<img class="no-round" src="/files/transparentFoncé Texte Grand.svg" style="width: 50%; min-width: 100px">
+				<div class="form-row row align-content-end justify-content-center" >
+						
+						<div class="group stripe-group col-12" style="display: none;">
+								<input id="cardholder-email" name="cardholder-email" class="field" placeholder="{{ _('john@doe.com') }}" value="{{payer_email}}"/>
+						</div>
+						<div class="group stripe-group col-12">
+						<div id="card-element" name="card-element" class="field"></div>
+						<div id="card-errors" class="text-center" role="alert"></div>
+						</div>
+						<div class="group col-12">
+								<input id="cardholder-name" name="cardholder-name" class="field" placeholder="{{ _('John Doe') }}" value="{{payer_name}}" style="width: inherit; font-weight: bold; color: inherit !important; background-color: inherit !important;border-bottom: 1px solid;"/>
+						</div>
+						<small>{{ _("Secure Payment by Stripe") }}</small>
 				</div>
-				<div class="group stripe-group col-12">
-					<div>
-						<label>
-							<span>{{ _("Email") }}</span>
-						<input id="cardholder-email" name="cardholder-email" class="field" placeholder="{{ _('john@doe.com') }}" value="{{payer_email}}"/>
-					</label>
-					</div>
-				</div>
-				<div class="group stripe-group col-12">
-					<label>
-					<span>{{ _("Card Details") }}</span>
-				<div id="card-element" name="card-element" class="field"></div>
-				</label>
-				<div id="card-errors" class="text-center" role="alert"></div>
-			
 			</div>
-			<small>{{ _("Payment by Stripe") }}</small>
-			</div>
-			<button type="submit" class="submit" id="submit">{{_('Pay')}} {{amount}}</button>
+			<button type="submit" class="submit" style="min-width: fit-content;" id="submit">{{_('Pay')}} {{amount}}</button>
 			<div class="outcome text-center">
 				<div class="error" hidden>{{ _("An error occured during the payment process. Please contact us.") }}</div>
 				<div class="success" hidden>{{ _("Your payment has been successfully registered.") }}</div>
@@ -54,6 +45,6 @@
 		</form>
 	</div>
 </div>
-
+</div>
 
 {% endblock %}
